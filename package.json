@@ -1,5 +1,5 @@
 {
-  "name": "@auroraisnear/cli",
+  "name": "pavel-@auroraisnear/cli",
   "version": "0.0.3",
   "description": "Aurora Engine command-line interface (CLI).",
   "type": "module",
