@@ -34,7 +34,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         pnpm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}"
-        pnpm publish --access public --publish-branch aurora-js
+        pnpm publish --access public
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
