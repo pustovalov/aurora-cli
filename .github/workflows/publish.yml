@@ -2,19 +2,12 @@
 name: Publish CI
 
 on:
-  push:
-    tags:
-      - "*.*.*"
-
-permissions:
-  contents: read
+  release:
+    types: [created]
 
 jobs:
   publish:
-    permissions:
-      contents: write  # for softprops/action-gh-release to create GitHub release
     runs-on: ubuntu-latest
-    environment: release
     steps:
     - uses: actions/checkout@v3
     - name: Install pnpm
@@ -28,15 +21,9 @@ jobs:
         cache: 'pnpm'
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
-    - run: npm version
     - name: Publish Packages
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         pnpm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}"
         pnpm publish --access public
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        draft: true
-        files: lib/*
