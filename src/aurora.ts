@@ -157,11 +157,13 @@ async function main(argv: string[], env: NodeJS.ProcessEnv) {
     });
 
   program
-    .command('call <address> <input>')
-    .action(async (address, input, options, command) => {
+    .command('call <address> <value> <input>')
+    .action(async (address, value, input, options, command) => {
       const [_, engine] = await loadConfig(command, options, env);
       const address_ = Address.parse(readInput(address)).unwrap();
-      const output = (await engine.call(address_, readInput(input))).unwrap();
+      const output = (
+        await engine.call(address_, readInput(input), value)
+      ).unwrap();
       const p = new Table();
       p.addRow({
         contract: address,
