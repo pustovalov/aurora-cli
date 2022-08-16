@@ -19,7 +19,7 @@
     "allowJs": true
   },
   "typedocOptions": {
-    "entryPoints": ["aurora.ts"],
+    "entryPoints": ["src/aurora.ts"],
     "includeVersion": false,
     "hideGenerator": true
   }
